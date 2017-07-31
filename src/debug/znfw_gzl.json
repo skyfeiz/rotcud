@@ -1,6 +1,6 @@
 {
 	"success": true,
-	"title": "设备故障率对比(‰)",
+	"title": "设备故障 率对比(‰)",
 	"data": [{
 		"seriesName": "物联预测性维护前",
 		"dataList": [{

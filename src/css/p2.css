@@ -1,0 +1,411 @@
+/*表格盒子*/
+
+.box1 {
+    position: absolute;
+    width: 805px;
+    height: 372px;
+    transform: translate(-30%, 0%);
+    opacity: 0;
+}
+
+
+/*盒子标题*/
+
+.chartTitle {
+    width: 100%;
+    position: absolute;
+    font-size: 20px;
+    line-height: 26px;
+    left: 0;
+    top: -13px;
+    text-align: center;
+    color: #fff;
+    text-shadow: #3197d9 0px 0px 10px;
+}
+
+
+/*内容盒子*/
+
+.contentBox {
+    width: 100%;
+    height: 306px;
+    margin: 36px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.chartBox1 {
+    left: 94px;
+    top: 138px;
+}
+
+.chartBox1 img.chartBorder {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.chartBox2 {
+    left: 94px;
+    bottom: 155px;
+}
+
+.chartBox2 img.chartBorder {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.chartBox3 {
+    right: 94px;
+    bottom: 155px;
+}
+
+.chartBox3 img.chartBorder {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.chartBox4 {
+    right: 94px;
+    top: 138px;
+}
+
+.contentBox li {
+    width: 700px;
+    height: 25px;
+    line-height: 25px;
+    margin: 2px auto;
+    cursor: pointer;
+    opacity: 0;
+}
+
+
+/*列表标题*/
+
+.contentBox li.listTitle {
+    margin: 3px auto;
+    position: relative;
+    background-color: rgba(5, 169, 233, 0.3);
+    cursor: auto;
+}
+
+.contentBox li.Odd {
+    background-color: rgba(5, 169, 233, 0.1);
+}
+
+.contentBox li .topLine {
+    position: absolute;
+    top: -3px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(5, 169, 233, 0.4);
+}
+
+.contentBox li .topLine:before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: -1px;
+    height: 2px;
+    width: 2px;
+    background-color: #fff;
+}
+
+.contentBox li .topLine:after {
+    display: block;
+    content: "";
+    position: absolute;
+    right: -1px;
+    height: 2px;
+    width: 2px;
+    background-color: #fff;
+}
+
+.contentBox li .bottomLine {
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(5, 169, 233, 0.4);
+}
+
+.contentBox li .bottomLine:before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: -1px;
+    bottom: 0;
+    height: 2px;
+    width: 2px;
+    background-color: #fff;
+}
+
+.contentBox li .bottomLine:after {
+    display: block;
+    content: "";
+    position: absolute;
+    right: -1px;
+    bottom: 0;
+    height: 2px;
+    width: 2px;
+    background-color: #fff;
+}
+
+
+/*文本*/
+
+.contentBox li p {
+    display: block;
+    width: 50%;
+    float: left;
+    font-size: 15px;
+    text-indent: 110px;
+    color: #59bdcc;
+}
+
+.contentBox li.onClick p {
+    color: #b3ffff;
+}
+
+
+/*点击边框*/
+
+.chartBox3 li.onClick {
+    z-index: 100;
+    position: relative;
+}
+
+.prominentBorder {
+    position: absolute;
+    left: 52px;
+    top: 350px;
+}
+
+.prominentBorder:before {
+    display: block;
+    width: 3px;
+    height: 26px;
+    left: -6px;
+    top: 0px;
+    background-color: #66ffff;
+    content: "";
+    position: absolute;
+}
+
+.prominentBorder div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: width 0.2s, height 0.2s;
+    -webkit-transition: width 0.2s, height 0.2s;
+    -moz-transition: width 0.2s, height 0.2s;
+    transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+}
+
+.prominentBorder.hide div {
+    width: 0%;
+    height: 0%;
+    border-color: transparent;
+    box-shadow: transparent 2px -2px 4px;
+}
+
+.prominentLine1 {
+    border-top: 1px solid #66ffff;
+    border-right: 1px solid #66ffff;
+    top: 0;
+    right: -1px;
+    box-shadow: rgba(0, 228, 255, 0.4) 1px -1px 4px;
+}
+
+.prominentLine2 {
+    border-bottom: 1px solid #66ffff;
+    border-left: 1px solid #66ffff;
+    left: -1px;
+    bottom: -1px;
+    box-shadow: rgba(0, 228, 255, 0.4) -1px 1px 4px;
+}
+
+.chartBox3 p.p1 {
+    width: 200px;
+    text-indent: 0;
+    text-align: center;
+}
+
+.chartBox3 p.p2 {
+    width: 310px;
+    text-indent: 0;
+}
+
+.chartBox3 p.p3 {
+    width: 190px;
+    text-indent: 0;
+}
+
+.chartBox3 p.p1 span {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    margin-top: -2px;
+    background: url("../imgs/p2/select.png") no-repeat 0px 0px;
+}
+
+.chartBox3 .listTitle {
+    text-align: left;
+    text-indent: 40px;
+}
+
+.chartBox3 .listTitle span {
+    margin-right: 8px;
+}
+
+#hideList {
+    display: none;
+}
+
+
+/**/
+
+#rollBox li {
+    position: absolute;
+    left: 0;
+    margin: 0;
+}
+
+#rollBox {
+    position: absolute;
+    width: 700px;
+    left: 53px;
+    top: 31px;
+}
+
+
+/*计价器*/
+
+.chartBox4 .box {
+    width: 270px;
+    height: 270px;
+    position: absolute;
+    left: 104px;
+    top: 40px;
+}
+
+#box1,
+#box2 {
+    width: 100%;
+    height: 100%;
+}
+
+#box1 canvas,
+#box1 div,
+#box2 canvas,
+#box2 div {
+    width: 100%!important;
+    height: 100%!important;
+}
+
+.chartBox4 .box img {
+    opacity: 0;
+    position: absolute;
+    height: 67%;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s;
+}
+
+.chartBox4 .box img.rollImg {
+    height: 42%;
+}
+
+.chartBox4 .textBox {
+    opacity: 0;
+    position: absolute;
+    top: 89%;
+    left: 50%;
+    width: 164px;
+    height: 46px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    background: url(../imgs/p2/dashPlane.png) no-repeat 50% 100%;
+}
+
+.chartBox4 .p1 {
+    font-size: 40px;
+    line-height: 36px;
+}
+
+.chartBox4 .p2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 15px;
+    color: #66ffff;
+}
+
+.offer {
+    width: 315px;
+    height: 107px;
+    position: absolute;
+    background: url(../imgs/p2/offerBg.png);
+    right: 62px;
+}
+
+.offer img {
+    position: absolute;
+    left: 50px;
+    top: 30px;
+}
+
+.offerUp {
+    top: 80px;
+}
+
+.offer p {
+    position: absolute;
+    left: 106px;
+}
+
+.offerNum1 {
+    font-size: 15px;
+    color: #66ffff;
+}
+
+.offerNum1 {
+    font-size: 15px;
+    color: #66ffff;
+    top: 21px;
+}
+
+.offerNum2 {
+    font-size: 40px;
+    color: #fefefe;
+    top: 36px;
+}
+
+.offerDown {
+    top: 200px;
+}
+
+
+.chartBox4 .transformBG{
+	transform: scale(1.64,1.01) !important;
+	transform-origin: left bottom;
+}
+
+.transformBox1 div,
+.transformBox2 div {
+    background: rgba(102, 255, 255, 0.6);
+}
+
+.transformBox1 .leftBar3, .transformBox2 .rightBar3{
+    background-color: rgba(102, 255, 255, 1);
+}
+
+.transformBox1 .leftBar2,.transformBox2 .rightBar2 {
+    border-bottom: 6px solid rgba(102, 255, 255, 0.6);
+}

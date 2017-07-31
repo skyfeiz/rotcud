@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="libs/jquery.min.js"></script>
     <script src="libs/controller.js"></script>
     <script src="libs/echarts3-6-2.js"></script>
@@ -14,26 +14,27 @@
 <body>
     <div class="root">
         <div id="BG">
-            <img class="bgCover" src="imgs/bgCover.jpg">
-            <img class="img1" src="imgs/centerNut.png">
-            <img class="img2" src="imgs/nut1.png">
+            <img class="bgCover" src="imgs/p1/bgCover.jpg">
+            <img class="img1" src="imgs/p1/centerNut.png">
+            <img class="img2" src="imgs/p1/nut1.png">
         </div>
         <section class="toptitlebox">
+            <h2>智能服务</h2>
         </section>
         <section class="canvaslines" id="canvaslines">
         </section>
         <section class="boxcenter preserve-3d" id="boxcenter"></section>
         <section class="bottombox clearfix">
-            <a href="javascript:;" class="fl active">
+            <a href="p1.html" class="fl active">
                 <p>智能服务</p>
             </a>
-            <a href="javascript:;" class="fl">
+            <a href="p2.html" class="fl">
                 <p>延长保修</p>
             </a>
             <a href="javascript:;" class="p3p2 fl">
                 <p>绣花机工况</p>
             </a>
-            <a href="javascript:;" class="fl">
+            <a href="p4.html" class="fl">
                 <p>研发辅助</p>
             </a>
         </section>
@@ -42,7 +43,8 @@
             <div class="znfw_chart1_01">
                 <div id="znfw_chart1_01">
                 </div>
-                <img src="imgs/innerCircle.png">
+                <img src="imgs/p1/innerCircle.png">
+                <img class="rollImg" src="imgs/p1/innerCircle1.png">
                 <div class="textBox">
                     <p class="p1">0</p>
                     <p class="p2">分钟</p>
@@ -51,7 +53,8 @@
             <div class="znfw_chart1_02">
                 <div id="znfw_chart1_02">
                 </div>
-                <img src="imgs/innerCircle.png">
+                <img src="imgs/p1/innerCircle.png">
+                <img class="rollImg" src="imgs/p1/innerCircle1.png">
                 <div class="textBox">
                     <p class="p1">0</p>
                     <p class="p2">分钟</p>
@@ -76,20 +79,22 @@
             <div class="w100p100" id="znfw_chart5"></div>
         </section>
         <!-- 反面 -->
-        <!-- <section  class="znfw_chart11">
+        <section  class="znfw_chart11">
             <p class="charttitle"></p>
+            <div class="znfw_chart11_box_bg"></div>
             <div class="znfw_chart11_box"></div>
-        </section> -->
+        </section>
         <section  class="znfw_chart21">
-            <p class="charttitle"></p>
+            <p class="charttitle">提高备件可用率举措</p>
             <div class="znfw_chart21_box"></div>
         </section>
         <section  class="znfw_chart31">
-            <p class="charttitle"></p>
+            <p class="charttitle">一次性修复率提高举措</p>
             <div class="znfw_chart31_box"></div>
         </section>
         <section  class="znfw_chart41">
             <p class="charttitle"></p>
+            <div class="znfw_chart41_box_bg"></div>
             <div class="znfw_chart41_box"></div>
         </section>
         <section  class="znfw_chart51">
@@ -104,6 +109,7 @@
             <div class="leftBar3" mark-side="top" mark-Left=0 mark-top=13 mark-rotate=0></div>
             <div class="leftBar4" mark-side="top" mark-Left=0 mark-top=158 mark-rotate=0></div>
             <div class="leftBar5" mark-side="left" mark-Left=150 mark-top=363 mark-rotate=0></div>
+            
             <img class="leftStick1" mark-side="left" mark-Left=78 mark-top=7 mark-rotate=0 src="imgs/transformSticks/stick1.png">
             <img class="leftStick2" mark-side="left" mark-Left=62 mark-top=0 mark-rotate=0 src="imgs/transformSticks/stick2.png">
             <img class="leftStick3" mark-side="left" mark-Left=0 mark-top=0 mark-rotate=0 src="imgs/transformSticks/stick3.png">

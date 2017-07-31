@@ -1,6 +1,6 @@
 {
 	"success": true,
-	"title": "设备档次归属",
+	"title": "设备指标",
 	"data": [{
 		"name": "机龄(年)",
 		"value": 5,

@@ -1,0 +1,20 @@
+{
+	"success": true,
+	"title": "模块故障频次",
+	"data": [{
+		"name": "电控组块",
+		"xNum": 0.2,
+		"yNum": 1.0,
+		"rNum": 200
+	}, {
+		"name": "操纵杆",
+		"xNum": 0.4,
+		"yNum": 1.2,
+		"rNum": 100
+	}, {
+		"name": "发电机",
+		"xNum": 0.6,
+		"yNum": 1.4,
+		"rNum": 80
+	}]
+}

@@ -2,7 +2,7 @@ this.WBST = this.WBST || {};
 (function(win,doc){
 	function Controller (){
 		var baseUrl = '';
-		var hostUrl = 'http://' + win.location.host+'/2-2screen/rootCloud/debug/';
+		var hostUrl = './debug/';
 		var api = {
 
 			/*  ----------------------------- 智能服务 ------------------------------------  */
@@ -40,10 +40,10 @@ this.WBST = this.WBST || {};
 
 			/*  ----------------------------- 研发辅助 ------------------------------------  */
 
-			yffz_sdt: hostUrl+'yffz_sdt.json', 			//	散点图
-			yffz_fhqxt: hostUrl+'yffz_fhqxt.json', 		//	负荷曲线图  特定设备
-			yffz_czrtjt: hostUrl+'yffz_czrtjt.json', 		//	超载日统计图
-			yffz_sbfhqxt: hostUrl+'yffz_sbfhqxt.json'	 	//	设备负荷曲线图
+			yffz_gzpc: hostUrl+'yffz_gzpc.json', 			//	模块故障频次
+			yffz_jscl: hostUrl+'yffz_jscl.json', 		//	节省策略
+			yffz_zqcl: hostUrl+'yffz_zqcl.json', 		//	增强策略
+			yffz_bccl: hostUrl+'yffz_bccl.json'	 	//	保持策略
 		}
 
 		// 异步请求方法
@@ -323,9 +323,9 @@ this.WBST = this.WBST || {};
 
 		/*  ----------------------------- 研发辅助 ------------------------------------  */
 
-		this.getYffz_sdt = function(data, callback) {
+		this.getYffz_gzpc = function(data, callback) {
 			requestAsk({
-				url: api.yffz_sdt,
+				url: api.yffz_gzpc,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -335,9 +335,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getYffz_fhqxt = function(data, callback) {
+		this.getYffz_jscl = function(data, callback) {
 			requestAsk({
-				url: api.yffz_fhqxt,
+				url: api.yffz_jscl,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -347,9 +347,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getYffz_czrtjt = function(data, callback) {
+		this.getYffz_zqcl = function(data, callback) {
 			requestAsk({
-				url: api.yffz_czrtjt,
+				url: api.yffz_zqcl,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -359,9 +359,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getYffz_sbfhqxt = function(data, callback) {
+		this.getYffz_bccl = function(data, callback) {
 			requestAsk({
-				url: api.yffz_sbfhqxt,
+				url: api.yffz_bccl,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {

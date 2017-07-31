@@ -1,6 +1,6 @@
 {
 	"success": true,
-	"title": "档次与折扣对照",
+	"title": "保价计算结果",
 	"result":{
 		"D1":0.8,
 		"D2":0.7,
