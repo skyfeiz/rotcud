@@ -6,16 +6,18 @@ class _privateClass {
 		this.option = null;
 		this.isStart = false;
 		this.loopTween = null;
+		this.startN = 0;
 	}
 }
 
 class ZnfwXysj {
-	constructor(dom) {
+	constructor(dom,startNum) {
 		if (dom == undefined) {
 			console.error("need a dom");
 			return false;
 		}
 		this._privateVars = new _privateClass();
+		this._privateVars.startN = startNum || 0;
 		this._privateVars.myEcharts = echarts.init(dom, "", {
 			width: 216,
 			height: 216
@@ -103,7 +105,7 @@ class ZnfwXysj {
 					}
 				},
 				data: [{
-					value: 0,
+					value: this._privateVars.startN,
 					name: this._privateVars.data[this._privateVars.configData["label"]]
 				}]
 			}]

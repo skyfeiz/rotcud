@@ -11,8 +11,9 @@ var distPath = path.resolve(rootPath,'rootCloud');
 
 module.exports = {
     entry: {
-        main:'./src/js/main.js',
-        p1:'./src/js/p1.js'
+        p1:'./src/js/p1.js',
+        p2:'./src/js/p2.js',
+        p4:'./src/js/p4.js'
     },
     output: {
         path: distPath,
@@ -37,7 +38,7 @@ module.exports = {
                 publicPath: "./../"
             })
         },{
-            test:/\.(png|jpg|gif|svg)$/i,
+            test:/\.(png|jpg|gif|svg|ttf)$/i,
             loader:'file-loader?name=imgs/[name].[ext]!image-webpack-loader'
         }]
     },
@@ -48,6 +49,9 @@ module.exports = {
         },{
             from: path.resolve(__dirname, 'src/libs'),
             to: path.resolve(__dirname,'rootCloud/libs')
+        },{
+            from: path.resolve(__dirname, 'src/imgs'),
+            to: path.resolve(__dirname,'rootCloud/imgs')
         }]),
         new ExtractTextPlugin({
             filename: "css/[name].css",
@@ -60,6 +64,18 @@ module.exports = {
             template:path.resolve(__dirname,'./src/p1.html'),
             chunks:['p1'],
             title:'智能服务'
+        }),
+        new htmlWebpackPlugin({
+            filename:'p2.html',
+            template:path.resolve(__dirname,'./src/p2.html'),
+            chunks:['p2'],
+            title:'延长保修'
+        }),
+        new htmlWebpackPlugin({
+            filename:'p4.html',
+            template:path.resolve(__dirname,'./src/p4.html'),
+            chunks:['p4'],
+            title:'研发辅助'
         })
     ]
 };

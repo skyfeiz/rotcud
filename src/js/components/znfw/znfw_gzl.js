@@ -128,7 +128,7 @@ class ZnfwGzl {
 				},
 				animationEasing: 'line',
 				animationDelay: function animationDelay(dataIndex, params) {
-					return 900*Math.sin(params.index/60*Math.PI/2);
+					return 900*Math.sin(params.index/60*Math.PI/2)+100*(dataIndex+1);
 				},
 				data: data[0],
 				symbolRepeat: true

@@ -4,7 +4,11 @@ const IsogonShape = require('zrender/lib/graphic/shape/Isogon');
 const LineShape = require("zrender/lib/graphic/shape/Line");
 const TextShape = require("zrender/lib/graphic/Text");
 const RectShape = require("zrender/lib/graphic/shape/Rect");
+const LineGradient = require("zrender/lib/graphic/LinearGradient.js");
+const CircleShape = require("zrender/lib/graphic/shape/Circle.js");
+const groupShape = require("zrender/lib/container/Group");
 
+const lineLight = require('../lineLight.js');
 
 function leadLine(dom) {
 	let $dom = $(dom);
@@ -93,11 +97,13 @@ function leadLine(dom) {
                     isogons[i].show();
                     isogons[i].animateShape().when(200,{r:(i%2==0?4:6)}).start();
                 }
+                for (var i = 0; i < lineArr.length; i++) {
+					lineLight(myZr,lineArr[i].x1,lineArr[i].y1,lineArr[i].x2,lineArr[i].y2,2000,1000);
+			    }
             }
         });
 
     }
-
 }
 
 $('.element-div').each(function(index, ele) {
@@ -176,7 +182,10 @@ function enterAni() {
 			taper: "none",
 			randomize: true,
 			clamp: false
-		})
+		}),
+		onComplete:function(){
+			$('#znfw_chart4').trigger('initChart');
+		}
 	});
 
 
@@ -227,17 +236,17 @@ function enterAni() {
 };
 
 function transformSet() {
-	$(".transformBG").each(function() {
+	$(".transformBG").each(function(i) {
 		var curDelay = Math.random() * 0.4;
 		var t6 = new TweenMax($(this).parent(), 1.2, {
 			transform: "translate(0,0)",
 			ease: Elastic.easeOut.config(0.5, 0.3),
 			delay: curDelay,
 			onCompleteParams: [$(this)],
-			onCompelete: function(a, b) {
-				if (b.TagName != "BODY") {
-					$(b).trigger('initChart');
-				}
+			onStartParams: [i],
+			onComplete: function(a) {
+				if (a.hasClass('znfw_chart4')) {return}
+				a.trigger('initChart');
 			}
 		});
 		mainTimeLine.add(t6, "t6");

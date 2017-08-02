@@ -44,6 +44,7 @@ function LineChart(dom) {
 	    			color: '#00dcff'
 	    		}
 	    	},
+	    	boundaryGap: false,
 	    	axisTick: {
 	    		lineStyle: {
 	    			color: '#cee1ff',

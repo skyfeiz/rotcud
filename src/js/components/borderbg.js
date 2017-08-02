@@ -5,16 +5,9 @@ const LineShape = require("zrender/lib/graphic/shape/Line");
 const TextShape = require("zrender/lib/graphic/Text");
 const RectShape = require("zrender/lib/graphic/shape/Rect");
 
-
-$('.element-div').each(function(index, ele) {
-	var clone = $('.z_clone').clone();
-	clone.removeClass('z_clone');
-	$(ele).prepend(clone);
-})
-
 var $centerNut, $nut1, mainTimeLine, $bgCover;
 
-function initAnimation() {
+function initAnimation(fn) {
 	$bgCover = $("#BG .bgCover");
 	$centerNut = $("#BG .img1");
 	$nut1 = $("#BG .img2");
@@ -23,9 +16,14 @@ function initAnimation() {
 	mainTimeLine.addLabel("t1", 0);
 	mainTimeLine.addLabel("t3", 0.5);
 	mainTimeLine.addLabel("t2", 1);
-	mainTimeLine.addLabel("t5", 1.5);
-	mainTimeLine.addLabel("t6", 1.5);
-
+	mainTimeLine.addLabel("t5", 1);
+	mainTimeLine.addLabel("t6", 1.4);
+	$('.element-div').each(function(index, ele) {
+		var clone = $('.z_clone').clone();
+		clone.removeClass('z_clone');
+		$(ele).prepend(clone);
+	});
+	fn&&fn();
 	enterAni();
 	transformSet();
 };
@@ -85,7 +83,6 @@ function enterAni() {
 	mainTimeLine.add(t1, "t1");
 	mainTimeLine.add(t2, "t2");
 	mainTimeLine.add(t3, "t3");
-
 };
 
 function transformSet() {
@@ -144,7 +141,7 @@ function transformAni(element, index, baseDelay) {
 			ease = Back.easeOut.config(1);
 			delay = .5;
 		}
-		t.to(element, .5, {
+		t.to(element, .6, {
 			left: element.attr("mark-Left"),
 			ease: ease
 		}, delay);
@@ -156,8 +153,20 @@ function transformAni(element, index, baseDelay) {
 			ease = Back.easeOut.config(1);
 			delay = .5;
 		}
-		t.to(element, .5, {
+		t.to(element, .6, {
 			top: element.attr("mark-top"),
+			ease: ease
+		}, delay);
+	}
+	if (element.attr("mark-bottom")) {
+		var ease = Power2.easeInOut;
+		var delay = .2;
+		if (element.attr("mark-side") == "top") {
+			ease = Back.easeOut.config(1);
+			delay = .5;
+		}
+		t.to(element, .6, {
+			bottom: element.attr("mark-bottom"),
 			ease: ease
 		}, delay);
 	}
@@ -168,7 +177,7 @@ function transformAni(element, index, baseDelay) {
 			ease = Back.easeOut.config(1);
 			delay = .5;
 		}
-		t.to(element, .5, {
+		t.to(element, .6, {
 			right: element.attr("mark-right"),
 			ease: ease
 		}, delay);

@@ -7,10 +7,22 @@ const CircleShape = require("zrender/lib/graphic/shape/Circle.js");
 const TextShape = require("zrender/lib/graphic/Text.js");
 const RectShape = require("zrender/lib/graphic/shape/Rect.js");
 const Group = require("zrender/lib/container/Group");
+const LineGradient = require("zrender/lib/graphic/LinearGradient.js");
 class ZnfwRadar {
 	constructor(dom) {
 		this.$dom = $(dom);
 		this.zr = zrender.init(dom);
+
+		this.lightLinear = new LineGradient(0,0,0,1,[{
+			offset:1,
+			color:'rgba(255,255,255,1)'
+		},{
+			offset:0.5,
+			color:'rgba(255,255,255,0)'
+		},{
+			offset:0,
+			color:'rgba(255,255,255,0)'
+		}],false);
 	}
 
 	setConfig(value) {
@@ -110,12 +122,12 @@ class ZnfwRadar {
 		// name
 		let TextPos = this.getPointsVec2(vec2,[R+30,R+40,R+40,R+40,R+40]);
 		for (var i = 0; i < nameArr.length; i++) {
-			this.drawText(TextPos[i][0],TextPos[i][1],nameArr[i],'#50a7bd');
+			this.drawText(TextPos[i][0],TextPos[i][1],nameArr[i],'#50a7bd',undefined,14);
 		}
 
 		// 画系列
 		let colorArr=['rgba(255,255,255,1)','rgba(0,220,255,1)'];
-		let colorArr2=['rgba(126,178,230,0.1)','rgba(0,220,255,0.1)'];
+		let colorArr2=['rgba(126,178,230,0.05)','rgba(0,220,255,0.05)'];
 		let colorShadowArr = ['#7eb2e6','#00dcff'];
 		for (let i = 0; i < data.length; i++) {
 			// 	点坐标
@@ -129,10 +141,9 @@ class ZnfwRadar {
 
 			seriesGroup.add(this.drawPolygon(itemPos,colorArr2[i]));
 			seriesGroup.add(this.drawPolyLine(itemPos,colorArr[i],{blur:10,color:colorArr[i]}));
-			seriesGroup.add(this.drawPolyLine(itemPos,colorArr[i],{blur:10,color:colorArr[i]}));
 
 			for (var j = 0; j < itemPos.length; j++) {
-				seriesGroup.add(this.drawPoints(itemPos[j][0],itemPos[j][1],4,'#fff',{blur:10,color:colorArr[i]}));
+				seriesGroup.add(this.drawPoints(itemPos[j][0],itemPos[j][1],4,'#fff',{blur:5,color:colorArr[i]}));
 				nameGroup.add(this.drawText(s1Pos[j][0],s1Pos[j][1],data[i][j]+'%','#fff',{blur:10,color:colorShadowArr[i]}));
 			}
 		}
@@ -223,14 +234,15 @@ class ZnfwRadar {
 		return polyLine;
 	}
 
-	drawText(x,y,text,color,shadow){
+	drawText(x,y,text,color,shadow,size){
+		size = size || 12;
 		shadow = shadow || {blur:0,color:'#000'};
 		let Text = new TextShape({
 			style:{
 				x:x,
 				y:y,
 				text:text,
-				textFont : 'normal 12px DIN MEDIUM',
+				textFont : 'normal '+size+'px DIN MEDIUM',
 				textAlign : 'center',
 				textVerticalAlign:'middle',
 				fill:color,
@@ -244,13 +256,22 @@ class ZnfwRadar {
 
 	drawLine(vec2,arr,color){
 		let group = new Group();
+		let MaxH = 0;
+		for (var i = 0; i < arr.length; i++) {
+			let h = Math.abs(arr[i][1]-vec2.y);
+			if (h>MaxH) {
+				MaxH = h;
+			}
+		}
 		for (let i = 0; i < arr.length; i++) {
+			let itargetX = arr[i][0];
+			let itargetY = arr[i][1];
 			let line = new LineShape({
 				shape: {
 					x1:vec2.x,
                     y1:vec2.y,
-                    x2:arr[i][0],
-                    y2:arr[i][1]
+                    x2:itargetX,
+                    y2:itargetY
 				},
 				style:{
 					stroke:color
@@ -259,7 +280,64 @@ class ZnfwRadar {
 			this.drawPoints(arr[i][0],arr[i][1],2,'#66ffff');
 			this.zr.add(line);
 			group.add(line);
+
+			let limitGroup = new Group();
+			
+
+			let lightLine = new LineShape({
+				shape:{
+					x1:vec2.x,
+                    y1:vec2.y,
+                    x2:vec2.x,
+                    y2:MaxH*2+vec2.y,
+                    percent:0
+				},
+				rotation:Math.PI*2/5*i+Math.PI,
+				origin:[vec2.x,vec2.y],
+				style:{
+					stroke:this.lightLinear,
+					lineWidth:2
+				}
+			})
+
+			lightLine.animateShape(true).when(4000,{percent:1}).start();
+
+			let limitCircle= new CircleShape({
+				shape:{
+					cx:vec2.x,
+                    cy:vec2.y,
+                    r:MaxH
+				}
+			})
+			limitGroup.setClipPath(limitCircle);
+			this.zr.add(limitGroup);
+
+			let lightLine2 = new LineShape({
+				shape:{
+					x1:vec2.x,
+                    y1:vec2.y,
+                    x2:vec2.x,
+                    y2:MaxH*2+vec2.y,
+                    percent:0
+				},
+				rotation:Math.PI*2/5*i+Math.PI,
+				origin:[vec2.x,vec2.y],
+				style:{
+					stroke:this.lightLinear,
+					lineWidth:2
+				}
+			})
+
+			lightLine2.animateShape(true).when(4000,{percent:1}).delay(2000).start();
+
+
+			limitGroup.add(lightLine);
+			limitGroup.add(lightLine2);
+			this.zr.add(lightLine);
+			this.zr.add(lightLine2);
+
 		}
+
 		return group;
 	}
 

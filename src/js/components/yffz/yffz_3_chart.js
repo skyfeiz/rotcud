@@ -138,7 +138,7 @@ function LineColumnChart(dom) {
             type: 'group',
             bounding: 'raw',
             right: '5%',
-            top: '24%',
+            top: '30%',
             z: 100,
             children: [{
 	            	type: 'text',
@@ -175,8 +175,8 @@ function LineColumnChart(dom) {
         }, {
             type: 'group',
             bounding: 'raw',
-            right: '3%',
-            bottom: '50%',
+            right: '5%',
+            bottom: '30%',
             z: 100,
             children: [{
 	            	type: 'text',

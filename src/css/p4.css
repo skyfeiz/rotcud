@@ -6,7 +6,8 @@
 	height: 818px;
 }
 .yffzChart1box .transformBG{
-	transform: scale(1.71,2.18) !important;
+	height: 466px;
+	transform: scale(1.71);
 	transform-origin: left bottom;
 }
 .yffzChart1{
@@ -32,8 +33,14 @@
 	top: 130px;
 }
 .yffzChart2box .transformBG,.yffzChart3box .transformBG,.yffzChart4box .transformBG{
-	transform: scale(1.71,0.674) !important;
-	transform-origin: left bottom;
+	width: 843px;
+	height: 244px;
+}
+.yffzChart2box .leftBar1,.yffzChart3box .leftBar1,.yffzChart4box .leftBar1{
+	width: 440px;
+}
+.yffzChart2box .leftBar5,.yffzChart3box .leftBar5,.yffzChart4box .leftBar5{
+	width: 540px;
 }
 .yffzChart2{
 	position: absolute;

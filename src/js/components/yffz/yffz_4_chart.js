@@ -110,7 +110,6 @@ function LineColumnChart3d(dom, dombg) {
 			}
 		}, {
 			position: 'right',
-			max:1,
 			axisLine: {
 				lineStyle: {
 					color: '#00dcff'
@@ -175,7 +174,7 @@ function LineColumnChart3d(dom, dombg) {
 			type: 'group',
 			bounding: 'raw',
 			right: '6%',
-			bottom: '25%',
+			bottom: '12%',
 			z: 100,
 			children: [{
 				type: 'text',
@@ -192,8 +191,8 @@ function LineColumnChart3d(dom, dombg) {
 		}, {
 			type: 'group',
 			bounding: 'raw',
-			right: '3%',
-			bottom: '50%',
+			right: '5%',
+			bottom: '32%',
 			z: 100,
 			children: [{
 				type: 'text',
@@ -283,6 +282,7 @@ LineColumnChart3d.prototype = {
 
 		var index = 0;
 		var xData = [];
+		
 		for (var key in current._config) {
 			if (key == 'xField') {
 				current._dataProvider.map(function(item, index) {

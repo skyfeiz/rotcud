@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack-dev-config.js --progress --inline --colors",
+    "dev": "webpack-dev-server --config webpack-dev-config.js --progress --inline --colors --open-page rootCloud/p1.html",
     "build": "webpack --config webpack-build-config.js --progress --colors"
   },
   "author": "",

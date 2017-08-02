@@ -29,10 +29,10 @@ var bars = function(dom, opt) {
 	};
 	let lineGradient = [{
 		offset: 0,
-		color: 'rgba(43,73,108,0.4)'
+		color: 'rgba(43,73,108,0.2)'
 	}, {
 		offset: 0.5,
-		color: 'rgba(43,73,108,0.2)'
+		color: 'rgba(43,73,108,0.1)'
 	}, {
 		offset: 1,
 		color: 'rgba(43,73,108,0)'
@@ -64,7 +64,6 @@ p.setDataProvider = function(data) {
 	if (this._len == 6) {
 		newData.name=['增加','汇总'];
 	}
-	console.log(newData);
 	this._privateVars.data = newData;
 	if (this._privateVars.configData)
 		this.createContent();
@@ -105,11 +104,6 @@ p.createContent = function() {
 		this._privateVars.sum = sum + data[data.length - 1];
 		this._privateVars.textData.push(sum + data[data.length - 1]);
 	}
-
-
-	// console.log(this._privateVars.data1)
-	// console.log(this._privateVars.data2)
-	console.log(this._privateVars.bgData)
 
 	this.createContent1();
 	// this.createContent2();

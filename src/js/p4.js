@@ -5,7 +5,7 @@ const YffzChart2 = require('./components/yffz/yffz_2_chart.js');
 const YffzChart3 = require('./components/yffz/yffz_3_chart.js');
 const YffzChart4 = require('./components/yffz/yffz_4_chart.js');
 
-const initAnimation = require('./components/yffz/yffz_assist.js');
+const initAnimation = require('./components/borderbg.js');
 
 const ajaxUtil = new WBST.Controller(); 
 
@@ -73,4 +73,19 @@ $yffzChart4box.parent().on('initChart',function(){
 })
 
 
-initAnimation();
+initAnimation(function(){
+	let $chart1box = $('.yffzChart1box');
+	$('.rightStick4').attr('mark-top',55);
+	$('.leftStick4').attr('mark-top',55);
+	$('.rightBar4').attr('mark-top',90);
+	$('.leftBar4').attr('mark-top',90);
+
+	$chart1box.find('.leftStick4').attr('mark-top',96);
+	$chart1box.find('.rightStick4').attr('mark-top',96);
+
+	$chart1box.find('.leftBar4').attr('mark-top',154).css('height',185);
+	$chart1box.find('.rightBar4').attr('mark-top',154).css('height',185);
+
+	// $yffzChart1box.find('.rightBar3').attr('height',100);
+	// $yffzChart1box.find('.leftBar3').attr('height',100);
+});

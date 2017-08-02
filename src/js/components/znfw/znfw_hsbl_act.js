@@ -1,15 +1,8 @@
 const zrender = require('zrender');
-const PolylineShape = require("zrender/lib/graphic/shape/Polyline");
 const PolygonShape = require('zrender/lib/graphic/shape/Polygon');
-const PatternShape = require('zrender/lib/graphic/Pattern');
-const LineShape = require("zrender/lib/graphic/shape/Line.js");
-const CircleShape = require("zrender/lib/graphic/shape/Circle.js");
 const LineGradient = require("zrender/lib/graphic/LinearGradient.js");
 const TextShape = require("zrender/lib/graphic/Text.js");
-const ImageShape = require("zrender/lib/graphic/Image.js");
-const SectorShape = require("zrender/lib/graphic/shape/Sector.js");
 const RectShape = require("zrender/lib/graphic/shape/Rect.js");
-const groupShape = require("zrender/lib/container/Group");
 
 class ZnfwHsblAct {
     constructor(dom) {

@@ -31,7 +31,7 @@ let $znfw_chart1_02 = $('#znfw_chart1_02');
 let $znfw_chart1 = $znfw_chart1_01.parent();
 let znfwXysj01 = new ZnfwXysj($znfw_chart1_01[0]);
 znfwXysj01.setConfig({ label: "name", value: "value" });
-let znfwXysj02 = new ZnfwXysj($znfw_chart1_02[0]);
+let znfwXysj02 = new ZnfwXysj($znfw_chart1_02[0],300);
 znfwXysj02.setConfig({ label: "name", value: "value" });
 $znfw_chart1.parent().data("isClick",false).on('initChart',function(){
 	ajaxUtil.getZnfw_xysj({},function(result){
@@ -76,7 +76,6 @@ $znfw_chart4.parent().data("isClick",false);
 $znfw_chart4.on('initChart',function(){
     let znfwGzl = new ZnfwGzl($znfw_chart4[0]);
     ajaxUtil.getZnfw_gzl({},function(result){
-        z_percent = 0;
         $znfw_chart4.parent().find('.charttitle').html(result.title);
         znfwGzl.setDataProvider(result.data);
     });

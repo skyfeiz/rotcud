@@ -437,7 +437,7 @@ class ZnfwXfl {
 			let fillColor = new LinearGradient(0, 0, 0, 1, lineGradient, false);
 			let lineGradient1 = [{
 				offset: 0,
-				color: 'rgba(43,73,108,0.5)'
+				color: 'rgba(43,73,108,0.2)'
 			}, {
 				offset: 1,
 				color: 'rgba(43,73,108,0)'

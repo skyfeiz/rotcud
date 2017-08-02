@@ -1,7 +1,7 @@
 require('../css/common.css');
 require('../css/p2.css');
 const Dashboard = require('./components/ycbx/ycbx_chart1.js');
-const animation = require('./components/ycbx/yffz_assist.js');
+const animation = require('./components/borderbg.js');
 
 var $lists = $(".box1 .contentBox");
 var $list1Prominent = $(".chartBox1 .prominentBorder");
@@ -45,8 +45,23 @@ function beginAni(){
 			transform: "translate(0,0)",
 			opacity: 1,
 			ease: Back.easeOut.config(1.7),
-			delay: i*.2
+			delay: i*.5+.8
 		});
+	});
+
+	TweenMax.to($(".arrow1"),.4,{
+		transform: "translate(0,0)",
+		opacity: 1,
+		delay: 1
+	});
+	TweenMax.to($(".arrow2"),.4,{
+		width: "60px",
+		delay: 1.5
+	});
+	TweenMax.to($(".arrow3"),.4,{
+		transform: "translate(0,0)",
+		opacity: 1,
+		delay: 2
 	});
 };
 
@@ -55,14 +70,11 @@ function buildList1(json){
 	for(var i=0; i<10; i++){
 		var Odd = !(i%2) ? "" : " Odd";
 		var $li = $("<li class='clearfix clickBar"+Odd+"'>"+
-			"<p>"+json.data[i].number+"</p><p>"+json.data[i].name+"</p>"+
+			"<p class='p1'>"+json.data[i].number+"</p><p class='p2'>"+json.data[i].name+"</p>"+
 		"</li>").data({ "belong": json.data[i].belong, "sub": json.data[i].sub });
 
 		$(".chartBox1 .prominentBorder").before($li);
 	}
-
-	
-	
 };
 
 function buildList2(json){
@@ -72,7 +84,7 @@ function buildList2(json){
 	for(var i=0; i<json.data.length; i++){
 		var Odd = !(i%2) ? "" : " Odd";
 		var $li = $("<li class='clearfix clickBar"+Odd+"'>"+
-			"<p>"+json.data[i].name+"</p><p>"+/*json.data[i].value*/i+"</p>"+
+			"<p class='p1'>"+json.data[i].name+"</p><p class='p2'>"+json.data[i].value+"</p>"+
 		"</li>");
 
 		$hideList.append($li.data("index",i));
@@ -89,7 +101,7 @@ function buildList3(json){
 	$(".chartBox3 .chartTitle").text(json.title);
 	for(var i=0; i<10; i++){
 		var Odd = !(i%2) ? "" : " Odd";
-		console.log(Odd)
+
 		var $li = $("<li class='clearfix clickBar"+Odd+"'>"+
 			"<p class='p1'><span></span></p><p class='p2'>"+json.data[i].name+"</p><p class='p3'>"+(json.data[i].value || 0)+"</p>"+
 		"</li>");
@@ -174,7 +186,7 @@ function bindClick3(){
 			$(this).data("isClick" ,false);
 			$(this).find("span").css("background-position", "0px 0px");
 		}
-		console.log($(this).data("isClick"));
+
 		var disCount = 0;
 		$(".chartBox3 li.clickBar").each(function(){
 			if($(this).data("isClick"))
@@ -221,13 +233,21 @@ function bindClick3(){
 };
 
 function countDiscount(){
+	if($(".offerDown .offerNum2").data("numTween"))
+		$(".offerDown .offerNum2").data("numTween").kill();
+
 	var disCount = $(".chartBox3").data("disCount") || 0;
 	var per = $("#box1").data("per") || 0;
 
-	$(".offerDown .offerNum2").text(Math.round(disCount*per*0.005));
+	var num = { per: $(".offerDown .offerNum2").text() };
+	var t = TweenMax.to(num,0.6,{ per: Math.round(disCount*per*0.005), ease: Linear.easeNone, onUpdate: function(){
+		$(".offerDown .offerNum2").text(Math.floor(num.per));
+	} });
+
+	$(".offerDown .offerNum2").data("numTween", t);
 };
 
-function clickBgAni(element,delay){
+function clickBgAni(element,delay,repeatDelay){
 
 	var index = element.index();
 
@@ -239,7 +259,7 @@ function clickBgAni(element,delay){
 			element.css({ backgroundColor: "rgba(5,169,233,"+Math.sin(loopA.per)*0.3+")" })
 		},
 		repeat: -1,
-		repeatDelay: 1,
+		repeatDelay: repeatDelay || 1,
 		delay: delay || 0
 	});
 
@@ -298,7 +318,7 @@ function shiftList2(element){
 		}
 
 		var $addLi = $hideList.find("li.clickBar").eq(list[i]).clone();
-		$addLi.data("index",list[i]).addClass("onClick");
+		$addLi.data("index",list[i]).addClass("onClick").css('opacity',0);
 
 		$rollBox.append($addLi.css({top: -27*i-27}));
 
@@ -310,7 +330,7 @@ function shiftList2(element){
 		} });
 		TweenMax.to($rollBox,.3,{ top: "+=27", delay: delay+.1 });
 		TweenMax.to($addLi,.3,{ opacity: 1, delay: delay+.3, onCompleteParams: [$addLi,i], onComplete: function(a,index){
-			var t = clickBgAni(a);
+			var t = clickBgAni(a,0,3);
 			$rollBox.data("tweenAry").push(t);
 
 			if(index==len-1)

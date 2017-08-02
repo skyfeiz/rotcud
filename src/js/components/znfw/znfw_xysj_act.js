@@ -1,6 +1,7 @@
 const zrender = require('zrender');
 const ImageShape = require("zrender/lib/graphic/Image.js");
 const CircleShape = require("zrender/lib/graphic/shape/Circle.js");
+const groupShape = require("zrender/lib/container/Group");
 function ZnfwXysjAct(dom,dombg) {
 	this.zr = zrender.init(dombg);
 
@@ -87,13 +88,15 @@ function ZnfwXysjAct(dom,dombg) {
 	        }
 	    ]
 	};
+
+	this.init();
 }
 
 ZnfwXysjAct.prototype = {
 	constructor: ZnfwXysjAct,
 
 	init: function() {
-
+		this.initBg();
 	},
 
 	setConfig: function(value) {
@@ -210,10 +213,15 @@ ZnfwXysjAct.prototype = {
 	 //        seriesIndex: 0,
 	 //        dataIndex: 1
 	 //    });
-	 	let c1 = new CircleShape({
+	 	
+	},
+
+	initBg:function(){
+
+		let c1 = new CircleShape({
 	 		shape:{
-	 			cx:current._centerX,
-	 			cy:current._centerY,
+	 			cx:this._centerX,
+	 			cy:this._centerY,
 	 			r:105
 	 		},
 	 		style:{
@@ -221,12 +229,12 @@ ZnfwXysjAct.prototype = {
 	 			stroke:'rgba(0,183,255,0.2)'
 	 		}
 	 	})
-	 	current.zr.add(c1);
+	 	this.zr.add(c1);
 
 	 	let c2 = new CircleShape({
 	 		shape:{
-	 			cx:current._centerX,
-	 			cy:current._centerY,
+	 			cx:this._centerX,
+	 			cy:this._centerY,
 	 			r:61
 	 		},
 	 		style:{
@@ -234,19 +242,34 @@ ZnfwXysjAct.prototype = {
 	 			stroke:'rgba(0,183,255,0.15)'
 	 		}
 	 	})
-	 	current.zr.add(c2);
+	 	this.zr.add(c2);
 
 	 	let imgSrc = require("../../../imgs/p1/xysjactbg1.png");
 	 	let img = new ImageShape({
 	 		style: {
-                x: current._centerX - 62,
-                y: current._centerX - 83,
+                x: this._centerX - 62,
+                y: this._centerY - 62,
                 image: imgSrc,
                 width: 124,
                 height: 124
             }
 	 	})
-	 	current.zr.add(img);
+	 	this.zr.add(img);
+	 	img.origin=[this._centerX,this._centerY];
+	 	img.animate('',true).when(8000,{rotation:Math.PI*2}).start();
+	 	let imgSrc2 = require("../../../imgs/p1/xysjactbg2.png");
+	 	let img2 = new ImageShape({
+	 		style: {
+                x: this._centerX - 32,
+                y: this._centerY - 32,
+                image: imgSrc2,
+                width: 64,
+                height: 64
+            }
+	 	})
+	 	this.zr.add(img2);
+	 	img2.origin=[this._centerX,this._centerY];
+	 	img2.animate('',true).when(8000,{rotation:-Math.PI*2}).start();
 	},
 
 	resize: function() {
