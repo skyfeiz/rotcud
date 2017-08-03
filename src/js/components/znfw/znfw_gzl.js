@@ -43,7 +43,7 @@ class ZnfwGzl {
         }
 
 		let option = {
-			color: ['#7eb2e6', '#66ffff'],
+			color: ['#d0e2ff', '#66ffff'],
 			grid: {
 				left: '8%',
 				right: '3%',
@@ -80,7 +80,7 @@ class ZnfwGzl {
                 splitLine:{
                     show:false,
                 },
-                name:'(%)     ',
+                name:'(‰)     ',
                 nameGap:7,
                 nameTextStyle:{
                     color:'#66ffff'
@@ -117,7 +117,7 @@ class ZnfwGzl {
 						show: true,
 						position: 'top',
 						formatter: function formatter(n) {
-							return n.value + '%';
+							return n.value + '‰';
 						},
 						textStyle: {
 							color: '#fff',
@@ -146,7 +146,7 @@ class ZnfwGzl {
 						show: true,
 						position: 'top',
 						formatter: function formatter(n) {
-							return n.value + '%';
+							return n.value + '‰';
 						},
 						textStyle: {
 							color: '#fff',

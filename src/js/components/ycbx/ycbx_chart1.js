@@ -37,7 +37,6 @@
 
 	p.createContent = function(){
 		var cur = this;
-		// console.log(this._privateVars.myEcharts.getDom())
 
 		var option = {
     		series: [{
@@ -120,7 +119,7 @@
     	if(!this._privateVars.isStart)
     		this.startAnimate(option);
     	else{
-    		console.log(99)
+    		if (!cur._privateVars.option) {return;}
     		TweenMax.to(cur._privateVars.option.series[1].data[0],1,{ease: Power2.easeInOut, value: this._privateVars.data[this._privateVars.configData["value"]], onUpdate: function(){
     			cur._privateVars.myEcharts.setOption(cur._privateVars.option, true);
     		} });

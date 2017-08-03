@@ -3,7 +3,7 @@ function LineChart(dom) {
 	this._domW = this._dom.offsetWidth;
 	this._domH = this._dom.offsetHeight;
 
-	this._colorArray = ['#298bed', '#00dcff', '#cee1ff'];
+	this._colorArray = ['#298bed', '#00dcff', '#7eb2e6'];
 	this._areaColorArray = ['rgba(41, 139, 237, 0.2)', 'rgba(0, 220, 255, 0.2)', 'rgba(206, 225, 255, 0.2)'];
 	this._iconArray = ['gear1.png', 'gear2.png', 'gear3.png'];
 	this._legendArray = ['legend1.png', 'legend2.png', 'legend3.png'];
@@ -13,6 +13,8 @@ function LineChart(dom) {
 	this._option = {
 		// backgroundColor: 'rgba(72, 118, 174, 0.1)',
 		grid:{
+			left:'14%',
+			right:'14%',
 			top:'15%',
 			bottom:'15%'
 		},
@@ -36,10 +38,13 @@ function LineChart(dom) {
             	fontFamily: 'Microsoft Yahei'
 	        },
 	        itemGap: 20,
+	        itemWidth:15,
+	        itemHeight:3,
 	        selectedMode: false
 	    },
 	    xAxis: {
 	    	axisLine: {
+	    		show:false,
 	    		lineStyle: {
 	    			color: '#00dcff'
 	    		}
@@ -71,6 +76,7 @@ function LineChart(dom) {
 	    			color: '#00dcff'
 	    		}
 	    	},
+	    	offset:30,
 	    	axisTick: {
 	    		lineStyle: {
 	    			color: '#cee1ff',
@@ -93,6 +99,7 @@ function LineChart(dom) {
 	    	}
 	    }, {
 	    	position: 'right',
+	    	offset:30,
 	    	axisLine: {
 	    		lineStyle: {
 	    			color: '#00dcff'
@@ -193,6 +200,20 @@ function LineChart(dom) {
                     }
 	            }
             ]
+        },{
+        	type:'line',
+        	left:'10%',
+        	bottom:'14%',
+        	shape:{
+        		x1:0,
+        		y1:0,
+        		x2:670,
+        		y2:0
+        	},
+        	style:{
+        		stroke:'#00dcff',
+        		lineWidth:1
+        	}
         }]
 	};
 

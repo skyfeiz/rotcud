@@ -55,7 +55,6 @@ module.exports = {
         }]),
         new ExtractTextPlugin({
             filename: "css/[name].css",
-            //filename: "css/style.css",
             disable: false,
             allChunks: true
         }),
@@ -76,6 +75,7 @@ module.exports = {
             template:path.resolve(__dirname,'./src/p4.html'),
             chunks:['p4'],
             title:'研发辅助'
-        })
+        }),
+        new webpack.optimize.UglifyJsPlugin()
     ]
 };

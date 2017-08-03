@@ -10,6 +10,7 @@ import Text from "zrender/lib/graphic/Text";
 import RadialGradient from "zrender/lib/graphic/RadialGradient.js";
 import LinearGradient from "zrender/lib/graphic/LinearGradient.js";
 import Group from "zrender/lib/container/Group";
+import lineLight from "../lineLight.js";
 
 
 class ZnfwXfl {
@@ -19,7 +20,7 @@ class ZnfwXfl {
 		this.init();
 		this.width = this.zr.getWidth();
 		this.height = this.zr.getHeight();
-		this.colorlist = ["rgba(0,255,255,1)", "rgba(70,108,158,1)", "rgba(1,198,255,1)", "rgba(153,153,255,1)", "rgba(255,147,38,1)", "rgba(0,102,102,1)"];
+		this.colorlist = [ "rgba(126,178,260,1)","rgba(0,250,255,1)", "rgba(1,198,255,1)", "rgba(153,153,255,1)", "rgba(255,147,38,1)", "rgba(0,102,102,1)"];
 		this.colorlistAlert = ["#66ffff", "#d1e3ff"];
 	}
 	init() {
@@ -197,9 +198,9 @@ class ZnfwXfl {
 				}
 			});
 			if (index == 0) {
-				_this.firstwordBeginPos = (_this.width - _this["legendText" + index].getBoundingRect().width - _this["legendText" + index].style.x) / 2;
+				_this.firstwordBeginPos = (_this.width - _this["legendText" + index].getBoundingRect().width - _this["legendText" + index].style.x) / 2-50;
 			}
-			titleListGroup.position = [_this.firstwordBeginPos, circleY + index * 18];
+			titleListGroup.position = [_this.firstwordBeginPos + index * 80, circleY];
 			titleListGroup.add(_this["legendText" + index])
 			_this.zr.add(titleListGroup);
 			titleListGroup.nameIndex = index;
@@ -272,7 +273,7 @@ class ZnfwXfl {
 	addframe() {
 		const _this = this;
 		const topX = 70;
-		const topY = 60;
+		const topY = 40;
 		const originX = 70;
 		const originY = 310;
 		const rightX = 444;
@@ -517,12 +518,14 @@ class ZnfwXfl {
 		_this.zr.add(groupAnimateBegin);
 
 
-
+		let pos2Arr = [];
 		for (let i = 0; i < names.length; i++) {
 			this["groupChildren_" + i] = new Group();
 			groupAnimateBegin.add(this["groupChildren_" + i])
 			this["group" + i] = new Group();
 			this["_positionArr" + i] = [];
+			let pArr = [];
+			pos2Arr.push(pArr);
 			this._dataProvider[i][_this._config["dataList"]].map(function(value, index) {
 				//				value[names[i]]
 				//index是时间序号
@@ -532,7 +535,7 @@ class ZnfwXfl {
 				let position = [];
 				position.push(cx);
 				position.push(cy);
-
+				pArr.push([cx,cy]);
 				_this["_positionArr" + i].push(position);
 
 
@@ -546,7 +549,7 @@ class ZnfwXfl {
 					},
 					style: {
 						fill: _this["radial" + i],
-						stroke: "#fff",
+						stroke: _this.colorlist[i],
 						lineWidth: 2,
 						shadowColor: _this.colorlist[i],
 						shadowBlur: 6,
@@ -644,7 +647,6 @@ class ZnfwXfl {
 				_this["valueCircle" + i + "_" + index].timeIndex = index;
 				//			添加鼠标进入效果
 
-
 			})
 
 			let lastY = this["valueCircle" + i + "_" + (this._length - 1)].shape.cy - (this["valueCircle" + i + "_" + (this._length - 2)].shape.cy - this["valueCircle" + i + "_" + (this._length - 1)].shape.cy) / 2
@@ -674,6 +676,24 @@ class ZnfwXfl {
 			})
 			this["groupChildren_" + i].add(this["polyShape" + i])
 
+		}
+		for (var i = 0; i < pos2Arr[0].length; i++) {
+			lineLight({
+				zr:_this.zr,
+				x:pos2Arr[0][i][0],
+				y:pos2Arr[0][i][1],
+				tX:pos2Arr[1][i][0],
+				tY:pos2Arr[1][i][1],
+				during:2000,
+				delay:1000,
+				param:_this["valueCircle1_" + i],
+				perFn:function(param){
+					param.style.stroke = 'rgba(255,255,255,1)';
+					param.animateStyle().when(2000,{
+						stroke:'rgba(0,250,255,1)'
+					}).delay(2000).start();
+				}
+			});
 		}
 		for (let i = 0; i < names.length; i++) {
 			let curGroup, shape, clipPath;

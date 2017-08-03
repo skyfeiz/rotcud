@@ -7,7 +7,8 @@ const RectShape = require("zrender/lib/graphic/shape/Rect");
 
 var $centerNut, $nut1, mainTimeLine, $bgCover;
 
-function initAnimation(fn) {
+function initAnimation(opts) {
+	opts = opts || {};
 	$bgCover = $("#BG .bgCover");
 	$centerNut = $("#BG .img1");
 	$nut1 = $("#BG .img2");
@@ -19,16 +20,17 @@ function initAnimation(fn) {
 	mainTimeLine.addLabel("t5", 1);
 	mainTimeLine.addLabel("t6", 1.4);
 	$('.element-div').each(function(index, ele) {
+		if ($(ele).hasClass('znfw_chart4')) {return}
 		var clone = $('.z_clone').clone();
 		clone.removeClass('z_clone');
 		$(ele).prepend(clone);
 	});
-	fn&&fn();
-	enterAni();
+	opts.borderfn&&opts.borderfn();
+	enterAni(opts.bgComplete);
 	transformSet();
 };
 
-function enterAni() {
+function enterAni(fn) {
 	var angle = {
 		per: 0
 	}
@@ -76,7 +78,9 @@ function enterAni() {
 			taper: "none",
 			randomize: true,
 			clamp: false
-		})
+		}),onComplete: function onComplete() {
+			fn && fn();
+		}
 	});
 
 
@@ -94,6 +98,7 @@ function transformSet() {
 			delay: curDelay,
 			onCompleteParams: [$(this)],
 			onComplete: function(a) {
+				if (a.hasClass('znfw_chart4')) {return}
 				a.trigger('initChart');
 			}
 		});

@@ -1,28 +1,17 @@
 const zrender = require('zrender');
 const PolylineShape = require("zrender/lib/graphic/shape/Polyline");
 const PolygonShape = require('zrender/lib/graphic/shape/Polygon');
-const PatternShape = require('zrender/lib/graphic/Pattern');
 const LineShape = require("zrender/lib/graphic/shape/Line.js");
 const CircleShape = require("zrender/lib/graphic/shape/Circle.js");
 const TextShape = require("zrender/lib/graphic/Text.js");
 const RectShape = require("zrender/lib/graphic/shape/Rect.js");
 const Group = require("zrender/lib/container/Group");
-const LineGradient = require("zrender/lib/graphic/LinearGradient.js");
+const lineLight = require('../lineLight.js');
+
 class ZnfwRadar {
 	constructor(dom) {
 		this.$dom = $(dom);
 		this.zr = zrender.init(dom);
-
-		this.lightLinear = new LineGradient(0,0,0,1,[{
-			offset:1,
-			color:'rgba(255,255,255,1)'
-		},{
-			offset:0.5,
-			color:'rgba(255,255,255,0)'
-		},{
-			offset:0,
-			color:'rgba(255,255,255,0)'
-		}],false);
 	}
 
 	setConfig(value) {
@@ -118,6 +107,7 @@ class ZnfwRadar {
 
 		//  *线
 		let topPoints = this.getPointsVec2(vec2,[R+20,R+20,R+20,R+20,R+20]);
+
 		this.drawLine(vec2,topPoints,'#52a4f6');
 		// name
 		let TextPos = this.getPointsVec2(vec2,[R+30,R+40,R+40,R+40,R+40]);
@@ -129,11 +119,14 @@ class ZnfwRadar {
 		let colorArr=['rgba(255,255,255,1)','rgba(0,220,255,1)'];
 		let colorArr2=['rgba(126,178,230,0.05)','rgba(0,220,255,0.05)'];
 		let colorShadowArr = ['#7eb2e6','#00dcff'];
+
+		let point2Arr = []; 
 		for (let i = 0; i < data.length; i++) {
 			// 	点坐标
 			let itemPos = this.getPointsVec2(vec2,data[i].map(function(n){
 				return n/100*R;
 			}));
+			point2Arr.push(itemPos);
 			// 	name坐标
 			let s1Pos = this.getPointsVec2(vec2,data[i].map(function(n){
 				return n/100*R+(i==0?-1:1)*20;
@@ -156,9 +149,19 @@ class ZnfwRadar {
 
         seriesGroup.scale = [0.2,0.2];
         seriesGroup.origin = [vec2.x,vec2.y];
+        let _this = this;
         seriesGroup.animate('',false).when(1000,{scale:[1,1]}).start().done(function(){
             for (var i = 0; i < nameGroup._children.length; i++) {
                 nameGroup._children[i].show();
+            }
+            for (var i = 0; i < point2Arr[0].length; i++) {
+            	lineLight({
+            		zr:_this.zr,
+            		x:point2Arr[0][i][0],
+            		y:point2Arr[0][i][1],
+            		tX:point2Arr[1][i][0],
+            		tY:point2Arr[1][i][1]
+            	});
             }
         });
 
@@ -256,13 +259,6 @@ class ZnfwRadar {
 
 	drawLine(vec2,arr,color){
 		let group = new Group();
-		let MaxH = 0;
-		for (var i = 0; i < arr.length; i++) {
-			let h = Math.abs(arr[i][1]-vec2.y);
-			if (h>MaxH) {
-				MaxH = h;
-			}
-		}
 		for (let i = 0; i < arr.length; i++) {
 			let itargetX = arr[i][0];
 			let itargetY = arr[i][1];
@@ -279,63 +275,7 @@ class ZnfwRadar {
 			})
 			this.drawPoints(arr[i][0],arr[i][1],2,'#66ffff');
 			this.zr.add(line);
-			group.add(line);
-
-			let limitGroup = new Group();
-			
-
-			let lightLine = new LineShape({
-				shape:{
-					x1:vec2.x,
-                    y1:vec2.y,
-                    x2:vec2.x,
-                    y2:MaxH*2+vec2.y,
-                    percent:0
-				},
-				rotation:Math.PI*2/5*i+Math.PI,
-				origin:[vec2.x,vec2.y],
-				style:{
-					stroke:this.lightLinear,
-					lineWidth:2
-				}
-			})
-
-			lightLine.animateShape(true).when(4000,{percent:1}).start();
-
-			let limitCircle= new CircleShape({
-				shape:{
-					cx:vec2.x,
-                    cy:vec2.y,
-                    r:MaxH
-				}
-			})
-			limitGroup.setClipPath(limitCircle);
-			this.zr.add(limitGroup);
-
-			let lightLine2 = new LineShape({
-				shape:{
-					x1:vec2.x,
-                    y1:vec2.y,
-                    x2:vec2.x,
-                    y2:MaxH*2+vec2.y,
-                    percent:0
-				},
-				rotation:Math.PI*2/5*i+Math.PI,
-				origin:[vec2.x,vec2.y],
-				style:{
-					stroke:this.lightLinear,
-					lineWidth:2
-				}
-			})
-
-			lightLine2.animateShape(true).when(4000,{percent:1}).delay(2000).start();
-
-
-			limitGroup.add(lightLine);
-			limitGroup.add(lightLine2);
-			this.zr.add(lightLine);
-			this.zr.add(lightLine2);
-
+			group.add(line);		
 		}
 
 		return group;

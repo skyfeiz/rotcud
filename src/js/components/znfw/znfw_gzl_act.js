@@ -11,9 +11,27 @@ function ZnfwGzlAct(dom,dombg) {
 	this._outR = this._domW > this._domH ? this._domH * 0.46 : this._domW * 0.46;
 	this._outR = this._outR / 2 + 50;
 
+	this.oldOption = null;
 
 	var current = this;
 	current._pieChart = echarts.init(current._dom);
+
+	current._pieChart.on('mouseover',function(param){
+		current._option.graphic[param.dataIndex+1].children.map(function(obj,idx){
+			if (idx == 1) {
+				obj.style.font = '35px DIN MEDIUM';
+			}else if (idx == 2) {
+				obj.style.font = '20px Microsoft Yahei';
+			}
+		});
+		current._pieChart.setOption(current._option);
+		current.setHeightLight(param.dataIndex);
+	})
+
+	current._pieChart.on('mouseout',function(param){
+		current._pieChart.setOption(current.oldOption);
+		current._option = $.extend(true,{},current.oldOption);
+	})
 	// 颜色序列
 	current._colorArray = ['#00dcff', '#7eb2e6', '#ffffff'];
 
@@ -141,7 +159,6 @@ ZnfwGzlAct.prototype = {
 			startAngle += angle;
 
 			var color = current._colorArray[index % current._colorArray.length];
-
 			// 生成labelLine末端的发光点和显示文本
 			var element = {
 	            type: 'group',
@@ -164,7 +181,7 @@ ZnfwGzlAct.prototype = {
 	                {
 	                    type: 'text',
 	                    left: textX,	
-	                    top: 'center',
+	                    top: -20,
 	                    z: 100,
 	                    style: {
 	                        fill: '#66ffff',
@@ -186,7 +203,6 @@ ZnfwGzlAct.prototype = {
 	            ]
 	        };
 	        current._option.graphic.push(element);
-
 	        // 生成图例
 	        var legendItem = {name: item[current._config.nameField], icon: 'rect'};
 	        legendArr.push(legendItem);
@@ -198,6 +214,7 @@ ZnfwGzlAct.prototype = {
 		seriesItem.data = current._dataProvider;
 		current._pieChart.setOption(current._option);
 
+		current.oldOption = $.extend(true,{},current._option);
 		// 如需选中交互，可以通过以下代码实现
 		// current._pieChart.on('pieselectchanged', function(params) {
 		// 	console.log(params);
@@ -245,9 +262,6 @@ ZnfwGzlAct.prototype = {
         });
         current.zr.add(img2);
         current.animation(img2,-1,current._centerX,current._centerY);
-
-
-        
 	},
 
 	animation(obj,dir,x,y){
@@ -262,6 +276,30 @@ ZnfwGzlAct.prototype = {
 
 	dispose: function() {
 
+	},
+	setHeightLight:function(b){
+		// 取消之前高亮的图形
+	    this._pieChart.dispatchAction({
+	        type: 'downplay',
+	        seriesIndex: 0,
+	        dataIndex: 0
+	    });
+	    this._pieChart.dispatchAction({
+	        type: 'downplay',
+	        seriesIndex: 0,
+	        dataIndex: 1
+	    });
+	    this._pieChart.dispatchAction({
+	        type: 'downplay',
+	        seriesIndex: 0,
+	        dataIndex: 2
+	    });
+	    // 高亮当前图形
+		this._pieChart.dispatchAction({
+	        type: 'highlight',
+	        seriesIndex: 0,
+	        dataIndex: b
+	    });
 	}
 }
 

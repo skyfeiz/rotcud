@@ -1,6 +1,6 @@
 {
 	"success": true,
-	"title": "常用备件可用率",
+	"title": "常用备件满足度",
 	"data": [{
 		"seriesName": "传统模式",
 		"dataList": [{

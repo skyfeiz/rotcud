@@ -155,7 +155,13 @@ p.createContent1 = function() {
 					color: "#50a7bd",
 					fontFamily: 'DIN MEDIUM'
 				},
-				interval: 0
+				interval: 0,
+				formatter:function(param,b){
+					if ((b+1)%2) {
+						param = '\n'+param;
+					}
+					return param;
+				}
 			},
 			axisTick: {
 				length: 2,
@@ -285,7 +291,7 @@ p.createbg = function(){
 			x:47,
 			y:48,
 			width:380,
-			height:246
+			height:232
 		}
 	})
 	baseGroup.setClipPath(rectArea);
@@ -295,7 +301,7 @@ p.createbg = function(){
 	let disX = 76.5;
 	let sX = 52;
 	let w = 57;
-	let h = 246;
+	let h = 232;
 	if (len == 6) {
 		sX = 45;
 		w = 58;

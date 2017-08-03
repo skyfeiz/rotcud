@@ -3,11 +3,11 @@
 	"title": "智能服务",
 	"data": [{
 		"seriesName": "工程师响应时间",
-		"start": "70",
+		"start": "300",
 		"end": "15",
 		"unit": "分钟"
 	}, {
-		"seriesName": "常用备件可用率",
+		"seriesName": "常用备件满足度",
 		"start": "60",
 		"end": "91",
 		"unit": "%"

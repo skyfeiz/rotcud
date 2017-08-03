@@ -62,7 +62,6 @@ module.exports = {
         }]),
         new ExtractTextPlugin({
             filename: "css/[name].css",
-            //filename: "css/style.css",
             disable: false,
             allChunks: true
         }),

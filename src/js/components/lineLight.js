@@ -4,6 +4,7 @@ const groupShape = require("zrender/lib/container/Group");
 const LineShape = require("zrender/lib/graphic/shape/Line");
 /**
  * 生成光线的类
+ * opts的参数
  * @param  {[zrender]} zr        zrender init实例
  * @param  {[int]} x         线起点x值
  * @param  {[int]} y         线起点y值
@@ -12,22 +13,30 @@ const LineShape = require("zrender/lib/graphic/shape/Line");
  * @param  {[int]} during    运动持续时间
  * @param  {[int]} delay     运动间隔时间
  * @param  {[string]} rgbaColor   default值 'rgba(255,255,255,1)'
+ * @param  {[function]} fn   每次运动完执行的函数
+ * @param  {[未知类型]} param   调用时传入的参数
  * @return {[zrender]}       lineShape 实例
  */
 
-function lineAnimate(zr,x,y,tX,tY,during,delay,rgbaColor){
+function lineAnimate(opts){
+	opts.during = opts.during || 2000;
+	opts.delay = opts.delay || 0;
+	let x = opts.x;
+	let y = opts.y;
+	let tX = opts.tX;
+	let tY = opts.tY;
+
 	let lineW = Math.sqrt((x-tX)*(x-tX)+(y-tY)*(y-tY));
-	delay = delay || 0;
-	rgbaColor = rgbaColor || 'rgba(255,255,255,1)';
+	opts.rgbaColor = opts.rgbaColor || 'rgba(255,255,255,1)';
 	let color = new LineGradient(0,0,0,1,[{
 		offset:0,
-		color:rgbaColor
+		color:opts.rgbaColor
 	},{
 		offset:0.5,
-		color:rgbaColor.substring(0,rgbaColor.lastIndexOf(','))+',0)'
+		color:opts.rgbaColor.substring(0,opts.rgbaColor.lastIndexOf(','))+',0)'
 	},{
 		offset:1,
-		color:rgbaColor.substring(0,rgbaColor.lastIndexOf(','))+',0)'
+		color:opts.rgbaColor.substring(0,opts.rgbaColor.lastIndexOf(','))+',0)'
 	}],false);
 
 	let LimitGroup = new groupShape();
@@ -39,7 +48,7 @@ function lineAnimate(zr,x,y,tX,tY,during,delay,rgbaColor){
 		}
 	});
 	LimitGroup.setClipPath(circle);
-	zr.add(LimitGroup);
+	opts.zr.add(LimitGroup);
 	
 	let Line = new LineShape({
 		shape:{
@@ -57,17 +66,18 @@ function lineAnimate(zr,x,y,tX,tY,during,delay,rgbaColor){
 		}
 	})
 
-	callSelft(Line,during,delay);
+	callSelft(Line,opts.during,opts.delay);
 
 	function callSelft(Line,during,delay){
 		Line.animateShape().when(during,{percent:1}).delay(delay).start().done(function(){
 			Line.shape.percent = 0;
+			opts.perFn && opts.perFn(opts.param);
 			callSelft(Line,during,delay);
 		});
 	}
 
 	LimitGroup.add(Line);
-	zr.add(Line);
+	opts.zr.add(Line);
 
 	return Line;
 }

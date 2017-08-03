@@ -16,11 +16,22 @@ class ZnfwXysj {
 			console.error("need a dom");
 			return false;
 		}
+		this.EventDispatcher = $({});
 		this._privateVars = new _privateClass();
 		this._privateVars.startN = startNum || 0;
 		this._privateVars.myEcharts = echarts.init(dom, "", {
 			width: 216,
 			height: 216
+		});
+		let _this = this;
+		this._privateVars.myEcharts.on('click',function(param){
+			if (param.dataIndex == 1) {return}
+			param.event.event.cancelBubble = true;
+			if (_this._privateVars.isStart) {return}
+			_this._privateVars.option.series[0].data[0].value = _this._privateVars.startN;
+			_this.startAnimate(_this._privateVars.option);
+			_this._privateVars.isStart = true;
+			return false;
 		});
 	}
 
@@ -39,8 +50,6 @@ class ZnfwXysj {
 	}
 
 	createContent() {
-
-		// console.log(this._privateVars.myEcharts.getDom())
 
 		var option = {
 			series: [{
@@ -117,6 +126,7 @@ class ZnfwXysj {
 			loopAnimation(option);
 
 		this._privateVars.isStart = true;
+		this._privateVars.option = option;
 	}
 
 	startAnimate(option) {
@@ -141,7 +151,7 @@ class ZnfwXysj {
 				cur.loopAnimation(option);
 			}
 		});
-
+		this.t1 = t1;
 		t1.addLabel("shining", 0);
 		t1.addLabel("begining", .9);
 		t1.addLabel("numShow", 1.3);
@@ -169,7 +179,6 @@ class ZnfwXysj {
 				ease: CustomEase.create("custom", "M0,0 C0,0 0.04,0.028 0.045,0.034 0.046,0.021 0.058,-0.036 0.06,-0.05 0.06,-0.05 0.132,-0.022 0.132,-0.022 0.132,-0.022 0.198,0.052 0.198,0.052 0.198,0.052 0.235,-0.06 0.235,-0.082 0.235,-0.054 0.312,0.074 0.312,0.074 0.312,0.074 0.376,-0.054 0.376,-0.054 0.376,-0.054 0.434,-0.102 0.434,-0.102 0.434,-0.102 0.472,0.04 0.472,0.04 0.472,0.04 0.51,0.172 0.51,0.172 0.51,0.172 0.554,-0.133 0.558,-0.14 0.558,-0.14 0.581,0.154 0.584,0.19 0.584,0.19 0.626,-0.041 0.638,-0.044 0.638,-0.054 0.663,0.099 0.668,0.112 0.668,0.112 0.731,-0.07 0.74,-0.082 0.742,-0.064 0.786,-0.01 0.786,-0.01 0.793,-0.018 0.825,-0.062 0.825,-0.062 0.825,-0.061 0.86,0.046 0.862,0.048 0.862,0.038 0.906,-0.02 0.906,-0.02 0.906,-0.02 0.923,0.026 0.926,0.04 0.926,0.04 0.956,0.012 0.964,0 0.964,0 1,0 1,0"),
 				onUpdate: function() {
 					option.series[0].axisLine.lineStyle.color[2] = [1, 'rgba(135,38,41,' + (shineTween.per) + ')'];
-					console.log(9)
 					cur._privateVars.myEcharts.setOption(option, true);
 				}
 			}, "shining+=0.5")
@@ -192,6 +201,7 @@ class ZnfwXysj {
 								color: "rgba(129,196,247,0.4)"
 							}
 						},
+						silent:true,
 						data: [{
 							value: 1
 						}]
@@ -199,6 +209,7 @@ class ZnfwXysj {
 						type: 'pie',
 						animationDuration: 400,
 						radius: ["48.5%", '48%'],
+						silent:true,
 						labelLine: {
 							normal: {
 								show: false
@@ -212,6 +223,22 @@ class ZnfwXysj {
 						data: [{
 							value: 1
 						}]
+					},{
+						type: 'pie',
+						animationDuration: 400,
+						radius: ["57%", '76%'],
+						silent:false,
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						itemStyle: {
+							normal: {
+								color: "rgba(129,196,247,0)"
+							}
+						},
+						data: [1,1,1]
 					});
 
 				},
@@ -228,7 +255,7 @@ class ZnfwXysj {
 			.to($div, .4, {
 				opacity: 1
 			}, "begining")
-			.to(option.series[0].data[0], 2, {
+			.to(option.series[0].data[0], 3, {
 				ease: Power2.easeInOut,
 				value: this._privateVars.data[this._privateVars.configData["value"]],
 				onStart: function() {
@@ -239,9 +266,11 @@ class ZnfwXysj {
 					$div.find(".p1").text(Math.ceil(option.series[0].data[0].value));
 
 					cur._privateVars.myEcharts.setOption(option, true);
+				},
+				onComplete:function(){
+					cur._privateVars.isStart = false;
 				}
 			}, "numShow");
-
 	}
 
 	loopAnimation(option) {

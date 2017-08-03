@@ -20,7 +20,7 @@ class Znfw6Box {
 				'<div class="clearfix">' +
 				'<span class="c-unit fr">' + item.unit + '</span>' +
 				'<span class="c-value fr">' + item.start + '</span>' +
-				'<p class="c-name fr">' + item.seriesName + '</p>' +
+				'<p class="c-name fr">' + item.seriesName + '由</p>' +
 				'</div>' +
 				'<div class="clearfix">' +
 				'<span class="d-unit fr">' + item.unit + '</span>' +

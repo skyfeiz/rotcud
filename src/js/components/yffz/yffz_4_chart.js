@@ -7,6 +7,9 @@ function LineColumnChart3d(dom, dombg) {
 	this._iconArray = ['icon2.png', 'icon2.png'];
 	this._legendArray = ['legend3_1.png', 'legend3_2.png'];
 
+	// 标线的Y位置   从上到下 0% ~ 100%
+	this.markLine = '40%';
+
 	this._lineChart = echarts.init(this._dom);
 
 	var points = [];
@@ -261,10 +264,10 @@ LineColumnChart3d.prototype = {
 				data: [
 					[{
 						x: '10%',
-						y: '50%'
+						y: this.markLine
 					}, {
 						x: '90%',
-						y: '50%'
+						y: this.markLine
 					}]
 				],
 				symbolSize: 0,

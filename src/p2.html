@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery_scrollBar.js"></script>
     <script src="libs/controller.js"></script>
-    <script src="libs/echarts3-6-2.js"></script>
+    <script src="libs/wbchart.js"></script>
     <script src="libs/TweenMax.min.js"></script>
     <script src="libs/CustomEase.js"></script>
 </head>
@@ -40,13 +41,15 @@
             <img class="chartBorder" src="imgs/p2/fullBorder1.png">
             <img class="arrow1" src="imgs/p2/arrow3.png">
             <p class="chartTitle"></p>
-            <ul class="contentBox">
-                <li class="listTitle clearfix">
-                    <div class="topLine"></div><div class="bottomLine"></div>
-                    <p>出厂编号</p><p>设备名称</p>
-                </li>
-                <li class="prominentBorder hide"><div class="prominentLine1"></div><div class="prominentLine2"></div></li>
-            </ul>
+            <div class="listTitle clearfix">
+                <div class="topLine"></div><div class="bottomLine"></div>
+                <p>出厂编号</p><p>设备名称</p>
+            </div>
+            <div class="contentBox">
+                <ul>
+                    <li class="prominentBorder hide"><div class="prominentLine1"></div><div class="prominentLine2"></div></li>
+                </ul>
+            </div>
         </div>
         <section class="box1 chartBox2">
             <img class="chartBorder" src="imgs/p2/fullBorder2.png">
@@ -66,6 +69,7 @@
         <section class="box1 chartBox3">
             <img class="chartBorder" src="imgs/p2/fullBorder3.png">
             <img class="arrow3" src="imgs/p2/arrow1.png">
+            <img class="arrow3_0" src="imgs/p2/arrow1_0.png">
             <p class="chartTitle"></p>
             <ul class="contentBox">
                 <li class="listTitle clearfix">
@@ -96,6 +100,7 @@
                 <p class="offerNum1">标的保费：</p>
                 <p class="offerNum2">0</p>
             </div>
+            <p class="warntext">该设备不建议提供延保服务</p>
         </section>
 
         <section class="transformBG z_clone">

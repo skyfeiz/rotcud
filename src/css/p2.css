@@ -33,16 +33,35 @@
     position: relative;
     overflow: hidden;
 }
-
 .chartBox1 {
     left: 94px;
     top: 138px;
 }
-
+.chartBox1 .contentBox{
+     height: 293px;
+}
+.chartBox1 .barBox{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 49px;
+    width: 5px;
+    background: rgba(0,0,0,0.3);
+}
+.chartBox1 .barBox .barItem{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #59bdcc;
+}
 .chartBox1 img.chartBorder {
     position: absolute;
     left: 0;
     top: 0;
+}
+.chartBox1 .prominentBorder{
+    top: -50px;
 }
 
 .chartBox2 {
@@ -79,11 +98,12 @@
     margin: 2px auto;
     cursor: pointer;
 }
-
-
 /*列表标题*/
-
-.contentBox li.listTitle {
+.chartBox1 .listTitle{
+    width: 700px;
+    top: 34px;
+}
+.listTitle {
     margin: 3px auto;
     position: relative;
     background-color: rgba(5, 169, 233, 0.3);
@@ -94,7 +114,7 @@
     background-color: rgba(5, 169, 233, 0.1);
 }
 
-.contentBox li .topLine {
+.listTitle .topLine {
     position: absolute;
     top: -3px;
     width: 100%;
@@ -102,7 +122,7 @@
     background-color: rgba(5, 169, 233, 0.4);
 }
 
-.contentBox li .topLine:before {
+.listTitle .topLine:before {
     display: block;
     content: "";
     position: absolute;
@@ -112,7 +132,7 @@
     background-color: #fff;
 }
 
-.contentBox li .topLine:after {
+.listTitle .topLine:after {
     display: block;
     content: "";
     position: absolute;
@@ -122,7 +142,7 @@
     background-color: #fff;
 }
 
-.contentBox li .bottomLine {
+.listTitle .bottomLine {
     position: absolute;
     bottom: -3px;
     width: 100%;
@@ -130,7 +150,7 @@
     background-color: rgba(5, 169, 233, 0.4);
 }
 
-.contentBox li .bottomLine:before {
+.listTitle .bottomLine:before {
     display: block;
     content: "";
     position: absolute;
@@ -141,7 +161,7 @@
     background-color: #fff;
 }
 
-.contentBox li .bottomLine:after {
+.listTitle .bottomLine:after {
     display: block;
     content: "";
     position: absolute;
@@ -151,7 +171,14 @@
     width: 2px;
     background-color: #fff;
 }
-
+.listTitle p{
+    display: block;
+    width: 50%;
+    float: left;
+    font-size: 15px;
+    text-indent: 110px;
+    color: #59bdcc;
+}
 
 /*文本*/
 
@@ -431,8 +458,23 @@
 }
 .arrow3{
     position: absolute;
-    left: 343px;
+    left: 382px;
     top: -45px;
     transform: translate(0%, 100%);
     opacity: 0;
+}
+.arrow3_0{
+    position: absolute;
+    top: -25px;
+    left: 343px;
+}
+
+.warntext{
+    color: #ff424f;
+    font-size: 14px;
+    width: 315px;
+    position: absolute;
+    right: 62px;
+    top: 315px;
+    display: none;
 }
