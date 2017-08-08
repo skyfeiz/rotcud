@@ -125,6 +125,7 @@ barChart1.setConfig({
 });
 
 ajaxUtil.getZnfw_kyl_act({}, function(result) {
+    $znfw_chart21.parent().find('.charttitle').html(result.title);
     $znfw_chart21.data('dataProvider', result.data);
 });
 
@@ -141,6 +142,7 @@ barChart2.setConfig({
     value: "data"
 });
 ajaxUtil.getZnfw_xfl_act({}, function(result) {
+    $znfw_chart31.parent().find('.charttitle').html(result.title);
     $znfw_chart31.data('dataProvider', result.data);
 });
 

@@ -13,6 +13,7 @@ module.exports = {
     entry: {
         p1:'./src/js/p1.js',
         p2:'./src/js/p2.js',
+        p3:'./src/js/p3.js',
         p4:'./src/js/p4.js'
     },
     output: {
@@ -76,6 +77,12 @@ module.exports = {
             template:path.resolve(__dirname,'./src/p2.html'),
             chunks:['p2'],
             title:'延长保修'
+        }),
+        new htmlWebpackPlugin({
+            filename:'p3.html',
+            template:path.resolve(__dirname,'./src/p3.html'),
+            chunks:['p3'],
+            title:'绣花机工况'
         }),
         new htmlWebpackPlugin({
             filename:'p4.html',

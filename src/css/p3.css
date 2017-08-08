@@ -1,0 +1,205 @@
+.element-div{
+	position: absolute;
+	width: 860px;
+	height: 420px;
+}
+.chartTitle{
+	font-size: 20px;
+	color: #fff;
+	text-shadow: 0 0 10px #3197d9;
+	text-align: center;
+}
+.xhjbox1{
+	left: 80px;
+	top: 96px;
+}
+.xhjbox2{
+	left: 979px;
+	top: 96px;
+}
+.xhjbox3{
+	left: 80px;
+	top: 540px;
+}
+.xhjbox4{
+	left: 979px;
+	top: 540px;
+}
+.leftbox{
+	width: 189px;
+	height: 256px;
+	position: absolute;
+	left: 33px;
+	top: 94px;
+	border-top: 1px solid #636c77;
+	border-bottom: 1px solid #636c77;
+	background: url(../imgs/p3/leftboxbg.png);
+}
+.pointbg{
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	background-color: #fff;
+	box-shadow: 0 0 5px #3197d9;
+}
+.ab_lt{
+	left: 0;
+	top: 0;
+}
+.ab_rt{
+	right: 0;
+	top: 0;
+}
+.ab_rb{
+	right: 0;
+	bottom: 0;
+}
+.ab_lb{
+	left: 0;
+	bottom: 0;
+}
+.iconimg{
+	position: absolute;
+	width: 67px;
+	height: 56px;
+	left: 0;
+	top: 23px;
+	border-right:1px solid #66fffd;
+}
+.iconimg img{
+	width: 100%;
+	height: 100%;
+}
+.icontext{
+	position: absolute;
+	left: 68px;
+	top: 16px;
+	width: 120px;
+	height: 86px;
+}
+.i_name{
+	font-size: 15px;
+	line-height: 24px;
+	color: #66fffd;
+	padding-left: 10px;
+}
+.i_value{
+	font-size: 50px;
+	line-height: 1;
+	color: #fff;
+	padding-left: 34px;
+	background-position: 10px center;
+	background-repeat: no-repeat;
+	text-shadow: 0 0 25px #3197d9;
+	font-family: "DIN MEDIUM";
+}
+.i_value.add{
+	background-image: url(../imgs/p1/addicon.png);
+}
+.i_value.fall{
+	background-image: url(../imgs/p1/fallicon.png);
+}
+.i_value span{
+	font-size: 14px;
+	line-height: 1;
+}
+.iconlight{
+	position: absolute;
+	left: -105px;
+	bottom: 4px;
+	width: 318px;
+	height: 24px;
+	background: url(../imgs/p3/leftlight.png) center no-repeat;
+}
+.l_details{
+	position: absolute;
+	top: 122px;
+	left: 33px;
+}
+.s_data{
+	height: 60px;
+}
+.s_value{
+	color: #fff;
+	font-size: 30px;
+	line-height: 30px;
+	text-shadow: 0 0 15px #3197d9;
+	font-family: "DIN MEDIUM";
+}
+.s_unit{
+	color: #fff;
+	font-size: 15px;
+	padding-top: 9px;
+	padding-left: 5px;
+}
+.c_icon{
+	position: absolute;
+	left: 4px;
+	top: 38px;
+	width: 109px;
+	height: 15px;
+	background-repeat: no-repeat;
+}
+.c_icon.add{
+	background-image: url(../imgs/p3/c_cion_add.png);
+}
+.c_icon.fall{
+	background-image: url(../imgs/p3/c_cion_fall.png);
+}
+.xhjbox2chart,.xhjbox3chart,.xhjbox4chart{
+	width: 633px;
+	height: 380px;
+	position: absolute;
+	left: 222px;
+	top: 38px;
+}
+.chartsul{
+	position: absolute;
+	left: 45px;
+	top: 70px;
+}
+
+.chartsul li{
+	width: 240px;
+	height: 290px;
+	margin-left: 30px;
+	position: relative;
+}
+.chartsul li:first-child{
+	margin-left: 0;
+}
+.liChartTitle{
+	height: 20px;
+	font-size: 15px;
+	line-height: 20px;
+	color: #66fffd;
+	text-align: center;
+}
+.xhjbox1chart{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 240px;
+	height: 230px;
+}
+.xhjbox1chart3box{
+	border-top: 1px solid #636c77;
+	border-bottom: 1px solid #636c77;
+	background: url(../imgs/p3/leftboxbg.png);
+}
+
+/* 边框 */
+.transformBG{
+	width: 859px;
+	height: 397px;
+}
+.leftBar1{
+	width: 450px;
+}
+.leftBar5{
+	width: 549px;
+}
+
+.leftBar4,.rightBar4{
+	height: 111px;
+}

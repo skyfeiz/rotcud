@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery_scrollBar.js"></script>
     <script src="libs/controller.js"></script>
     <script src="libs/wbchart.js"></script>
     <script src="libs/TweenMax.min.js"></script>
@@ -14,12 +15,11 @@
 <body>
     <div class="root">
         <div id="BG">
-            <img class="bgCover" src="imgs/p1/bgCover.jpg">
+            <img class="bgCover" src="imgs/p3/bgCover.jpg">
             <img class="img1" src="imgs/p1/centerNut.png">
-            <img class="img2" src="imgs/p1/nut1.png">
         </div>
-        <section class="toptitlebox" >
-            <h2>研发辅助</h2>
+        <section class="toptitlebox">
+            <h2>绣花机工况</h2>
         </section>
         <section class="bottombox clearfix">
             <a href="p1.html" class="fl">
@@ -28,42 +28,48 @@
             <a href="p2.html" class="fl">
                 <p>延长保修</p>
             </a>
-            <a href="p3.html" class="p3p2 fl">
+            <a href="p3.html" class="p3p2 fl active">
                 <p>绣花机工况</p>
             </a>
-            <a href="p4.html" class="fl active">
+            <a href="p4.html" class="fl">
                 <p>研发辅助</p>
             </a>
         </section>
-        
-        <section class="yffzChart1box element-div">
-            <p class="charttitle"></p>
-            <div class="yffzChart1" id="yffzChart1box"></div>
-        </section>
 
-        <section class="yffzChart2box element-div">
-            <p class="charttitle"></p>
-            <div class="yffzChart2" id="yffzChart2box"></div>
+        <section class="xhjbox1 element-div">
+            <p class="chartTitle"></p>
+            <ul class="chartsul clearfix">
+                <li class="fl">
+                    <p class="liChartTitle" id="liChartTitle1"></p>
+                    <div class="xhjbox1chart" id="xhjbox1chart1"></div>
+                </li>
+                <li class="fl">
+                    <p class="liChartTitle" id="liChartTitle2"></p>
+                    <div class="xhjbox1chart" id="xhjbox1chart2"></div>
+                </li>
+                <li class="fl" id="xhjbox1chart3li">
+                </li>
+            </ul>
         </section>
-
-        <section class="yffzChart3box element-div">
-            <p class="charttitle"></p>
-            <div class="yffzChart3" id="yffzChart3box"></div>
+        <section class="xhjbox2 element-div">
+            <p class="chartTitle"></p>
+            <div class="xhjbox2chart" id="xhjbox2chart"></div>
         </section>
-
-        <section class="yffzChart4box element-div">
-            <p class="charttitle"></p>
-            <div class="yffzChart4bg" id="yffzChart4bg"></div>
-            <div class="yffzChart4" id="yffzChart4box"></div>
+        <section class="xhjbox3 element-div">
+            <p class="chartTitle"></p>
+            <div class="xhjbox3chart" id="xhjbox3chart"></div>
         </section>
-
-        <div class="transformBG z_clone">
+        <section class="xhjbox4 element-div">
+            <p class="chartTitle"></p>
+            <div class="xhjbox4chart" id="xhjbox4chart"></div>
+        </section>
+        <section class="transformBG z_clone">
             <div class="transformBox1">
                 <div class="leftBar1" mark-side="left" mark-Left=207 mark-top=9 mark-rotate=0></div>
                 <div class="leftBar2" mark-side="left" mark-Left=-3 mark-top=-1 mark-rotate=-45></div>
                 <div class="leftBar3" mark-side="top" mark-Left=0 mark-top=13 mark-rotate=0></div>
                 <div class="leftBar4" mark-side="top" mark-Left=0 mark-top=158 mark-rotate=0></div>
-                <div class="leftBar5" mark-side="left" mark-Left=150 mark-bottom=2 mark-rotate=0></div>
+                <div class="leftBar5" mark-side="left" mark-Left=155 mark-bottom=2 mark-rotate=0></div>
                 <img class="leftStick1" mark-side="left" mark-Left=78 mark-top=7 mark-rotate=0 src="imgs/transformSticks/stick1.png">
                 <img class="leftStick2" mark-side="left" mark-Left=62 mark-top=0 mark-rotate=0 src="imgs/transformSticks/stick2.png">
                 <img class="leftStick3" mark-side="left" mark-Left=0 mark-top=0 mark-rotate=0 src="imgs/transformSticks/stick3.png">
@@ -86,9 +92,8 @@
                 <img class="rightStick7" mark-side="right"  mark-right=2 mark-bottom=4 mark-rotate=0 src="imgs/transformSticks/stick70.png">
                 <img class="rightStick8" mark-side="right"  mark-right=-2 mark-bottom=0 mark-rotate=0 src="imgs/transformSticks/stick80.png">
             </div>
-        </div>
+        </section>
     </div>
-    
 </body>
 
 </html>

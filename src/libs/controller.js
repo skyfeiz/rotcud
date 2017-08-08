@@ -31,11 +31,11 @@ this.WBST = this.WBST || {};
 
 			/*  ----------------------------- 绣花机工况 ------------------------------------  */
 
-			xhj_dkbfb: hostUrl+'xhj_dkbfb.json', 			//	打卡百分比
-			xhj_fll: hostUrl+'xhj_fll.json', 				//	废料率
-			xhj_jf: hostUrl+'xhj_jf.json', 				//	降费举措
-			xhj_jjq: hostUrl+'xhj_jjq.json', 				//	降交期举措
-			xhj_kgl: hostUrl+'xhj_kgl.json', 				//	开工率对比
+			xhj_xlts: hostUrl+'xhj_xlts.json', 				//	生产效率提升
+			xhj_yycb: hostUrl+'xhj_yycb.json', 				//	运营成本
+			xhj_bll: hostUrl+'xhj_bll.json', 				//	不良率
+			xhj_jjzs: hostUrl+'xhj_jjzs.json', 				//	降交期举措
+			xhj_lxqs: hostUrl+'xhj_lxqs.json', 				//	开工率对比
 			xhj_sjbd: hostUrl+'xhj_sjbd.json',				//	售价波动
 
 			/*  ----------------------------- 研发辅助 ------------------------------------  */
@@ -249,9 +249,9 @@ this.WBST = this.WBST || {};
 
 		/*  ----------------------------- 绣花机工况 ------------------------------------  */
 
-		this.getXhj_dkbfb = function(data, callback) {
+		this.getXhj_xlts = function(data, callback) {
 			requestAsk({
-				url: api.xhj_dkbfb,
+				url: api.xhj_xlts,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -261,9 +261,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getXhj_fll = function(data, callback) {
+		this.getXhj_yycb = function(data, callback) {
 			requestAsk({
-				url: api.xhj_fll,
+				url: api.xhj_yycb,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -273,9 +273,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getXhj_jf = function(data, callback) {
+		this.getXhj_bll = function(data, callback) {
 			requestAsk({
-				url: api.xhj_jf,
+				url: api.xhj_bll,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -285,9 +285,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getXhj_jjq = function(data, callback) {
+		this.getXhj_jjzs = function(data, callback) {
 			requestAsk({
-				url: api.xhj_jjq,
+				url: api.xhj_jjzs,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
@@ -297,9 +297,9 @@ this.WBST = this.WBST || {};
 			});
 		};
 
-		this.getXhj_kgl = function(data, callback) {
+		this.getXhj_lxqs = function(data, callback) {
 			requestAsk({
-				url: api.xhj_kgl,
+				url: api.xhj_lxqs,
 				data: data,
 				callback: function(json) {
 					if (callback instanceof Function) {
