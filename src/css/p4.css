@@ -37,10 +37,16 @@
 	height: 244px;
 }
 .yffzChart2box .leftBar1,.yffzChart3box .leftBar1,.yffzChart4box .leftBar1{
-	width: 440px;
+	width: 430px;
 }
 .yffzChart2box .leftBar5,.yffzChart3box .leftBar5,.yffzChart4box .leftBar5{
-	width: 540px;
+	width: 534px;
+}
+.yffzChart1box .leftBar1{
+ 	width: 79px;
+}
+.yffzChart1box .leftBar5{
+ 	width: 183px;
 }
 .yffzChart2{
 	position: absolute;

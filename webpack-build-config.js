@@ -11,10 +11,7 @@ var distPath = path.resolve(rootPath,'rootCloud');
 
 module.exports = {
     entry: {
-        p1:'./src/js/p1.js',
-        p2:'./src/js/p2.js',
-        p3:'./src/js/p3.js',
-        p4:'./src/js/p4.js'
+        charts:'./src/components/charts.js',
     },
     output: {
         path: distPath,
@@ -30,20 +27,13 @@ module.exports = {
                 presets:['es2015']
             }
         },{
-            test:/\.css$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: {
-                    loader: "css-loader"
-                },
-                publicPath: "./../"
-            })
-        },{
             test:/\.(png|jpg|gif|svg|ttf)$/i,
-            loader:'file-loader?name=[path]/[name].[ext]&context=src/!image-webpack-loader',
+            loader:'file-loader?name=[path]/[name].[ext]&context=src/',
         }]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, 'src/debug'),
             to: path.resolve(__dirname,'rootCloud/debug')
@@ -51,38 +41,42 @@ module.exports = {
             from: path.resolve(__dirname, 'src/libs'),
             to: path.resolve(__dirname,'rootCloud/libs')
         },{
+            from: path.resolve(__dirname, 'src/css'),
+            to: path.resolve(__dirname,'rootCloud/css')
+        },{
             from: path.resolve(__dirname, 'src/imgs'),
             to: path.resolve(__dirname,'rootCloud/imgs')
+        },{
+            from: path.resolve(__dirname, 'src/js'),
+            to: path.resolve(__dirname,'rootCloud/js')
         }]),
-        new ExtractTextPlugin({
-            filename: "css/[name].css",
-            disable: false,
-            allChunks: true
-        }),
         new htmlWebpackPlugin({
             filename:'p1.html',
             template:path.resolve(__dirname,'./src/p1.html'),
-            chunks:['p1'],
+            chunks:['charts'],
+            inject:'head',
             title:'智能服务'
         }),
         new htmlWebpackPlugin({
             filename:'p2.html',
             template:path.resolve(__dirname,'./src/p2.html'),
-            chunks:['p2'],
+            inject:'head',
+            chunks:['charts'],
             title:'延长保修'
         }),
         new htmlWebpackPlugin({
             filename:'p3.html',
             template:path.resolve(__dirname,'./src/p3.html'),
-            chunks:['p3'],
+            inject:'head',
+            chunks:['charts'],
             title:'绣花机工况'
         }),
         new htmlWebpackPlugin({
             filename:'p4.html',
             template:path.resolve(__dirname,'./src/p4.html'),
-            chunks:['p4'],
+            inject:'head',
+            chunks:['charts'],
             title:'研发辅助'
-        }),
-        new webpack.optimize.UglifyJsPlugin()
+        })
     ]
 };
